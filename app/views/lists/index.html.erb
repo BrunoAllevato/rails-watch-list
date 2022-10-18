@@ -1,12 +1,18 @@
+<img src="https://source.unsplash.com/random/700x600/?movies" style="width: 1353px; height: 350px; object-fit: cover; object-position: 50% 50%;" class="img-fluid">
+
 <div class="container mt-3">
+  <%# <%= image_tag "/assets/images/cover_cinema.png", width: 300 %>
 
   <h1>My Movie Lists</h1>
 
-  <ul>
+  <ul class="">
     <% @lists.each do |list| %>
-      <%= link_to list.name, list_path(list) %>
+      <%= link_to list_path(list), class: "text-decoration-none link-primary d-block" do %>
+        <%= list.name %>
+      <% end %>
     <% end %>
   </ul>
+
 
   <%= link_to new_list_path, class: "text-decoration-none" do %>
     <i class="fa-solid fa-plus"></i>
