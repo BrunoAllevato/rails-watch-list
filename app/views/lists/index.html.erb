@@ -1,9 +1,17 @@
-<img src="https://source.unsplash.com/random/700x600/?movies" style="width: 1353px; height: 350px; object-fit: cover; object-position: 50% 50%;" class="img-fluid">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/random/700x600/?movies);">
+  <div class="container">
+    <h1>My Movie Lists!</h1>
+    <p>Create your movie list and add any movie that you like.</p>
+    <%= link_to new_list_path, class: "text-decoration-none" do %>
+      <button class="btn btn-outline-secondary my-2 my-sm-0 ms-2" type="submit"><i class="fa-solid fa-plus"></i> Create List</button>
+    <% end %>
+  </div>
+</div>
+
+<%# <img src="https://source.unsplash.com/random/700x600/?movies" style="width: 1353px; height: 350px; object-fit: cover; object-position: 50% 50%;" class="img-fluid"> %>
 
 <div class="container mt-3">
   <%# <%= image_tag "/assets/images/cover_cinema.png", width: 300 %>
-
-  <h1>My Movie Lists</h1>
 
   <ul class="">
     <% @lists.each do |list| %>
@@ -13,9 +21,4 @@
     <% end %>
   </ul>
 
-
-  <%= link_to new_list_path, class: "text-decoration-none" do %>
-    <i class="fa-solid fa-plus"></i>
-    Create List
-  <% end %>
 </div>
