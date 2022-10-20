@@ -3,7 +3,7 @@
     <h1>My Movie Lists!</h1>
     <p>Create your movie list and add any movie that you like.</p>
     <%= link_to new_list_path, class: "text-decoration-none" do %>
-      <button class="btn btn-outline-secondary my-2 my-sm-0 ms-2" type="submit"><i class="fa-solid fa-plus"></i> Create List</button>
+      <button class="btn btn-outline-success my-2 my-sm-0 ms-2" type="submit"><i class="fa-solid fa-plus"></i> Create List</button>
     <% end %>
   </div>
 </div>
@@ -12,13 +12,18 @@
 
 <div class="container mt-3">
   <%# <%= image_tag "/assets/images/cover_cinema.png", width: 300 %>
+  <p><strong>Check your list(s):</strong></p>
 
-  <ul class="">
+  <div class="cards mb-3">
     <% @lists.each do |list| %>
-      <%= link_to list_path(list), class: "text-decoration-none link-primary d-block" do %>
-        <%= list.name %>
+    <%# <% uri = URI('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY') %>
+      <%# <% res = Net::HTTP.get_response(uri) %>
+      <%= link_to list_path(list), class: "text-decoration-none" do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://source.unsplash.com/random/700x600/?films)">
+          <%= list.name  %>
+        </div>
       <% end %>
     <% end %>
-  </ul>
+  </div>
 
 </div>
