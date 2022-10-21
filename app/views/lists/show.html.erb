@@ -2,10 +2,12 @@
 
   <div class="my-2 d-flex justify-content-between">
     <h1 class="fw-bold opacity-75"><%= @list.name %></h1>
-    <div class="movie-tag"><em><%= pluralize(@list.movies.size, "movie") %> added</em></div>
+    <div class="movie-tag"><span class="badge bg-info text-dark"><%= pluralize(@list.movies.size, "movie") %> added</span></div>
   </div>
 
-  <div class="mt-3">
+  <button class="btn btn-secondary text-white rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Bookmark a movie!</button>
+
+  <div class="collapse mt-3" id="collapseExample">
     <%= simple_form_for [@list, @bookmark] do |f| %>
       <div class="modal-body">
         <%= f.association :movie, collection: Movie.all.order(:title), prompt: "Select a movie" %>
@@ -23,21 +25,21 @@
     <% end %>
   </div>
 
-  <hr class="mt-2">
+  <hr class="mt-3">
 
   <div class="mt-4">
-    <div class="row row-cols-1 row-cols-md-4 g-4 d-flex justify-content-around">
+    <div class="row row-cols-md-4 g-4 d-flex justify-content-around">
       <% @list.movies.each do |movie| %>
-        <div class="col-4" style="width: 350px">
+        <div class="col-4" style="width: 500px">
           <div class="card h-100">
-            <img src="<%= movie.poster_url %>" class="card-img-top" height="300px" alt="...">
+             <%= image_tag movie.poster_url, alt: movie.title, class: "card-img-top" %>
             <div class="card-body">
               <strong class="card-title"><%= movie.title %> <span class="text-muted font-weight-normal">• <%= movie.rating %> <i class="fas fa-star star-yellow"></i></span></strong>
               <p class="card-text"><small class="text-muted"><%= movie.overview %></small></p>
               <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
               <hr>
               <p class="card-text">
-                <div class="d-flex align-items-end justify-content-between pt-0">
+                <div class="d-flex justify-content-between pt-0">
                   <div>
                     <i class="fas fa-quote-left me-2"></i><small class="flex-grow-1"><%= bookmark.comment %></small>
                   </div>
@@ -52,7 +54,7 @@
   </div>
 
   <div class="mb-3 mt-4">
-    <div class="col-2">
+    <div class="col">
       <%= link_to new_list_bookmark_path(@list), class: "text-decoration-none" do %>
         <i class="fa-solid fa-right-long mb-2"></i>
           Go to Bookmarks
