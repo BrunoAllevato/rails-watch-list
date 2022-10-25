@@ -39,6 +39,8 @@ gem "jbuilder"
 gem 'open-uri'
 
 gem "dotenv-rails", groups: [:development, :test]
+
+gem "cloudinary"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
